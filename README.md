@@ -28,12 +28,21 @@ reads it with `getDatasetData`.
 
 ## Setup
 
+Requires **Node 20 or newer**. The SDK's HTTP transport depends on
+`@hono/node-server`, which does not support Node 18.
+
 ```bash
 npm install
-npm start
 ```
 
-Register it with an MCP client (stdio transport):
+### Local use — stdio transport
+
+The client launches the server as a subprocess and speaks JSON-RPC over
+stdin/stdout. Nothing listens on a port.
+
+```bash
+npm start
+```
 
 ```json
 {
@@ -45,6 +54,27 @@ Register it with an MCP client (stdio transport):
   }
 }
 ```
+
+### Hosted use — Streamable HTTP transport
+
+One process serving many clients over the network. This is what claude.ai custom
+connectors and shared team deployments require.
+
+```bash
+npm run start:http          # listens on :3000, endpoint POST /mcp
+curl localhost:3000/health  # {"status":"ok","datasets":50,...}
+```
+
+`PORT`, `HOST` and `CORS_ORIGIN` are configurable via the environment.
+
+Note that `nohup npm start &` will **not** work for backgrounding — the stdio
+server exits immediately when its stdin is closed. Background `start:http`
+instead, or run either under a process manager such as systemd or pm2.
+
+To register as a claude.ai custom connector the endpoint must be reachable at a
+**public HTTPS URL** — a private EC2 address won't do. Terminate TLS with nginx,
+Caddy or an ALB in front of the service, and give Claude the
+`https://your-domain/mcp` URL.
 
 ### Environment variables
 
@@ -91,7 +121,9 @@ parsing path needs adding.
 ## Layout
 
 ```
-server.js                  MCP server and tool definitions
+server.js                  stdio entry point
+http-server.js             Streamable HTTP entry point (hosted / claude.ai)
+create-server.js           MCP server factory and tool definitions
 fcsc.js                    URL building, HTTP, SDMX parsing, table rendering
 datasets.json              Generated manifest of 50 FCSC dataflows
 scripts/build-manifest.py  Regenerates datasets.json from the spreadsheet
