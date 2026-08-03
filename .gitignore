@@ -1,0 +1,11 @@
+node_modules/
+
+# Local machine settings, not shared
+.claude/settings.local.json
+
+# FCSC credentials are supplied via the environment, never committed
+.env
+.env.*
+!.env.example
+
+*.log

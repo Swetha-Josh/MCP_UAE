@@ -1,0 +1,18 @@
+{
+  "name": "fcsc-mcp-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build:manifest": "python3 scripts/build-manifest.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "MCP server exposing FCSC UAE statistics (SDMX flat API) as tools",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.4.3"
+  }
+}

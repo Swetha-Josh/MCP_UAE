@@ -1,0 +1,680 @@
+{
+  "source": "FCSC- MOBILE APP- Deep links (1).xlsx",
+  "baseUrl": "https://releaseeuaestat.fcsc.gov.ae/rest",
+  "datasets": [
+    {
+      "id": "DF_AIRCRAFT_MOV",
+      "name": "Aircrafts Movement by Emirate",
+      "mainTopic": "Economy",
+      "subTopic": "Air Transport",
+      "kpis": [
+        "Aircrafts Movement"
+      ],
+      "agency": "FCSA",
+      "version": "1.6.0",
+      "key": ".A....",
+      "defaultStartPeriod": "2016",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_AIRCRAFT_MOV,1.6.0/.A....?startPeriod=2016&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_TRADE_EXP_SECT_YR",
+      "name": "Foreign Trade - Non-Oil Exports by HS Section by Country, Annual",
+      "mainTopic": "Economy",
+      "subTopic": "International Trade",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "5.1.0",
+      "key": ".A.......",
+      "defaultStartPeriod": "2024",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_TRADE_EXP_SECT_YR,5.1.0/.A.......?startPeriod=2024&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_TRADE_IMP_SECT_YR",
+      "name": "Foreign Trade - Imports by HS Section by Country, Annual",
+      "mainTopic": "Economy",
+      "subTopic": "International Trade",
+      "kpis": [
+        "Import"
+      ],
+      "agency": "FCSA",
+      "version": "5.1.0",
+      "key": ".A.......",
+      "defaultStartPeriod": "2024",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_TRADE_IMP_SECT_YR,5.1.0/.A.......?startPeriod=2024&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_TRADE_REXP_COUNTRY_MTH",
+      "name": "Foreign Trade - Re-Exports by Country,Monthly",
+      "mainTopic": "Economy",
+      "subTopic": "International Trade",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "5.1.0",
+      "key": ".M.......",
+      "defaultStartPeriod": "2024-01",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_TRADE_REXP_COUNTRY_MTH,5.1.0/.M.......?startPeriod=2024-01&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_TRADE_REXP_SECT_YR",
+      "name": "Foreign Trade - Re-Exports by HS Section by Country, Annual",
+      "mainTopic": "Economy",
+      "subTopic": "International Trade",
+      "kpis": [
+        "Re-Export"
+      ],
+      "agency": "FCSA",
+      "version": "5.1.0",
+      "key": ".A.......",
+      "defaultStartPeriod": "2024",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_TRADE_REXP_SECT_YR,5.1.0/.A.......?startPeriod=2024&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_TRADE_SECT_YR",
+      "name": "Foreign Trade - HS Section, Annual",
+      "mainTopic": "Economy",
+      "subTopic": "International Trade",
+      "kpis": [
+        "Total Trade"
+      ],
+      "agency": "FCSA",
+      "version": "5.1.0",
+      "key": ".A.......",
+      "defaultStartPeriod": "2017",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_TRADE_SECT_YR,5.1.0/.A.......?startPeriod=2017&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_TRADE_TEXP_SECT_YR",
+      "name": "Foreign Trade - Total Non-Oil Exports by HS Section by Country, Annual",
+      "mainTopic": "Economy",
+      "subTopic": "International Trade",
+      "kpis": [
+        "Export"
+      ],
+      "agency": "FCSA",
+      "version": "5.1.0",
+      "key": ".A.......",
+      "defaultStartPeriod": "2024",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_TRADE_TEXP_SECT_YR,5.1.0/.A.......?startPeriod=2024&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_NA_ISIC_CON",
+      "name": "GDP - Economic Sectors and Activities (Constant Prices 2010)",
+      "mainTopic": "Economy",
+      "subTopic": "National Account",
+      "kpis": [
+        "GDP (Constant Prices)"
+      ],
+      "agency": "FCSA",
+      "version": "3.4.0",
+      "key": ".A.............",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_NA_ISIC_CON,3.4.0/.A.............?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_NA_ISIC_CUR",
+      "name": "GDP - Economic Sectors and Activities (Current Prices)",
+      "mainTopic": "Economy",
+      "subTopic": "National Account",
+      "kpis": [
+        "GDP (Current Prices)"
+      ],
+      "agency": "FCSA",
+      "version": "3.4.0",
+      "key": ".A.............",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_NA_ISIC_CUR,3.4.0/.A.............?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_QGDP_CON",
+      "name": "GDP Quarterly - Constant Prices",
+      "mainTopic": "Economy",
+      "subTopic": "National Account",
+      "kpis": [
+        "GDP Quarterly (Constant Prices)"
+      ],
+      "agency": "FCSA",
+      "version": "1.8.0",
+      "key": ".Q......",
+      "defaultStartPeriod": "2015-Q1",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_QGDP_CON,1.8.0/.Q......?startPeriod=2015-Q1&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_QGDP_CUR",
+      "name": "GDP Quarterly - Current Prices",
+      "mainTopic": "Economy",
+      "subTopic": "National Account",
+      "kpis": [
+        "GDP Quarterly (Current Prices)"
+      ],
+      "agency": "FCSA",
+      "version": "1.8.0",
+      "key": ".Q......",
+      "defaultStartPeriod": "2015-Q1",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_QGDP_CUR,1.8.0/.Q......?startPeriod=2015-Q1&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_CPI_ANN",
+      "name": "Inflation Rate",
+      "mainTopic": "Economy",
+      "subTopic": "Prices",
+      "kpis": [
+        "Inflation Rate"
+      ],
+      "agency": "FCSA",
+      "version": "3.2.0",
+      "key": "...A..",
+      "defaultStartPeriod": "2022",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_CPI_ANN,3.2.0/...A..?startPeriod=2022&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_GUEST_REGION",
+      "name": "Guests by Hotel Type by Region",
+      "mainTopic": "Economy",
+      "subTopic": "Tourism",
+      "kpis": [
+        "Hotel Occupancy Rate"
+      ],
+      "agency": "FCSA",
+      "version": "4.3.0",
+      "key": "...A....",
+      "defaultStartPeriod": "2016",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_GUEST_REGION,4.3.0/...A....?startPeriod=2016&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_HOT_INDICATOR",
+      "name": "Hotel Establishments Main Indicators",
+      "mainTopic": "Economy",
+      "subTopic": "Tourism",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "4.3.0",
+      "key": "...A....",
+      "defaultStartPeriod": "2016",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_HOT_INDICATOR,4.3.0/...A....?startPeriod=2016&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_HOT_TYPE",
+      "name": "Hotel Establishments and Rooms by Rating Type",
+      "mainTopic": "Economy",
+      "subTopic": "Tourism",
+      "kpis": [
+        "Hotel Establishments"
+      ],
+      "agency": "FCSA",
+      "version": "4.3.0",
+      "key": "...A....",
+      "defaultStartPeriod": "2016",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_HOT_TYPE,4.3.0/...A....?startPeriod=2016&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_CROP_EM",
+      "name": "Crop Statistics by Emirate",
+      "mainTopic": "Environment",
+      "subTopic": "Agriculture",
+      "kpis": [
+        "Crops by Emirate"
+      ],
+      "agency": "FCSA",
+      "version": "3.0.0",
+      "key": ".A......",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_CROP_EM,3.0.0/.A......?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_CROP_LAND",
+      "name": "Landuse by Emirate",
+      "mainTopic": "Environment",
+      "subTopic": "Agriculture",
+      "kpis": [
+        "Crops Landuse"
+      ],
+      "agency": "FCSA",
+      "version": "3.0.0",
+      "key": ".A......",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_CROP_LAND,3.0.0/.A......?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_CROP_TRADE",
+      "name": "Production Quantity of Some Vegetables & Imports, Export and Re-exports by Crop, Self sufficiency rate",
+      "mainTopic": "Environment",
+      "subTopic": "Agriculture",
+      "kpis": [
+        "Crops Production"
+      ],
+      "agency": "FCSA",
+      "version": "3.0.0",
+      "key": ".A......",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_CROP_TRADE,3.0.0/.A......?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_CROP_TYPE",
+      "name": "Crop Statistics by Crop Type",
+      "mainTopic": "Environment",
+      "subTopic": "Agriculture",
+      "kpis": [
+        "Crops by Crop type"
+      ],
+      "agency": "FCSA",
+      "version": "3.0.0",
+      "key": ".A......",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_CROP_TYPE,3.0.0/.A......?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LSCAMEL",
+      "name": "Livestock Statistics - Camels by Age and Gender, Emirate",
+      "mainTopic": "Environment",
+      "subTopic": "Agriculture",
+      "kpis": [
+        "Livestocks - Camels"
+      ],
+      "agency": "FCSA",
+      "version": "1.2.0",
+      "key": ".A.....",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LSCAMEL,1.2.0/.A.....?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LSCATTLE",
+      "name": "Livestock Statistics - Cattle by Age and Gender, Emirate",
+      "mainTopic": "Environment",
+      "subTopic": "Agriculture",
+      "kpis": [
+        "Livestocks - Cattle"
+      ],
+      "agency": "FCSA",
+      "version": "1.2.0",
+      "key": ".A.....",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LSCATTLE,1.2.0/.A.....?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LSGOAT",
+      "name": "Livestock Statistics - Goats by Age and Gender, Emirate",
+      "mainTopic": "Environment",
+      "subTopic": "Agriculture",
+      "kpis": [
+        "Livestocks - Goats"
+      ],
+      "agency": "FCSA",
+      "version": "1.2.0",
+      "key": ".A.....",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LSGOAT,1.2.0/.A.....?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LSSHEEP",
+      "name": "Livestock Statistics - Sheep by Age and Gender, Emirate",
+      "mainTopic": "Environment",
+      "subTopic": "Agriculture",
+      "kpis": [
+        "Livestocks - Sheep"
+      ],
+      "agency": "FCSA",
+      "version": "1.2.0",
+      "key": ".A.....",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LSSHEEP,1.2.0/.A.....?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_CE",
+      "name": "Consumed Electricity by Emirate and Final Consumer",
+      "mainTopic": "Environment",
+      "subTopic": "Energy",
+      "kpis": [
+        "Consumption"
+      ],
+      "agency": "FCSA",
+      "version": "5.3.0",
+      "key": "A...............",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_CE,5.3.0/A...............?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_CO",
+      "name": "Crude Oil Reserves, Production, Exports and Imports",
+      "mainTopic": "Environment",
+      "subTopic": "Energy",
+      "kpis": [
+        "Crude Oil Production"
+      ],
+      "agency": "FCSA",
+      "version": "4.1.0",
+      "key": ".A..........",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_CO,4.1.0/.A..........?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_ELECTR_CON",
+      "name": "Electricity Generation by Entity and Type Fuel",
+      "mainTopic": "Environment",
+      "subTopic": "Energy",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "5.3.0",
+      "key": "A...............",
+      "defaultStartPeriod": "2021",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_ELECTR_CON,5.3.0/A...............?startPeriod=2021&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_GEN_TYPE",
+      "name": "Electricity Generation by Generator Type",
+      "mainTopic": "Environment",
+      "subTopic": "Energy",
+      "kpis": [
+        "Production"
+      ],
+      "agency": "FCSA",
+      "version": "5.3.0",
+      "key": "A...............",
+      "defaultStartPeriod": "2016",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_GEN_TYPE,5.3.0/A...............?startPeriod=2016&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_RE",
+      "name": "Renewable Energy - Installed Capacity and Electricity Production",
+      "mainTopic": "Environment",
+      "subTopic": "Energy",
+      "kpis": [
+        "Capacity & Production"
+      ],
+      "agency": "FCSA",
+      "version": "1.9.0",
+      "key": ".A....",
+      "defaultStartPeriod": "2015",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_RE,1.9.0/.A....?startPeriod=2015&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_CLIMATE_RAIN",
+      "name": "Climate - Rainfall Indicators by Weather Stations",
+      "mainTopic": "Environment",
+      "subTopic": "Environment",
+      "kpis": [
+        "Rainfall"
+      ],
+      "agency": "FCSA",
+      "version": "3.7.0",
+      "key": "...M...",
+      "defaultStartPeriod": "2016-01",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_CLIMATE_RAIN,3.7.0/...M...?startPeriod=2016-01&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_CLIMATE_TEMP",
+      "name": "Climate - Temperature Indicators by Weather Stations",
+      "mainTopic": "Environment",
+      "subTopic": "Environment",
+      "kpis": [
+        "Temperature"
+      ],
+      "agency": "FCSA",
+      "version": "3.7.0",
+      "key": "...M...",
+      "defaultStartPeriod": "2016-01",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_CLIMATE_TEMP,3.7.0/...M...?startPeriod=2016-01&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_NR_RAMSAR",
+      "name": "Natural Reserves - Protected Areas by RAMSAR Convention of Wetlands",
+      "mainTopic": "Environment",
+      "subTopic": "Environment",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "5.8.0",
+      "key": "...A...",
+      "defaultStartPeriod": "2023",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_NR_RAMSAR,5.8.0/...A...?startPeriod=2023&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_NR_RESERVE",
+      "name": "Natural Reserves - Protected Areas by Type, Name, and Emirate",
+      "mainTopic": "Environment",
+      "subTopic": "Environment",
+      "kpis": [
+        "Protected Area Count"
+      ],
+      "agency": "FCSA",
+      "version": "5.8.0",
+      "key": "...A...",
+      "defaultStartPeriod": "2017",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_NR_RESERVE,5.8.0/...A...?startPeriod=2017&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_PW_Q_PRODWATER_SOURCE",
+      "name": "Quantity of Produced Water by Entity and Water Source",
+      "mainTopic": "Environment",
+      "subTopic": "Environment",
+      "kpis": [
+        "Production"
+      ],
+      "agency": "FCSA",
+      "version": "5.7.0",
+      "key": ".A..........",
+      "defaultStartPeriod": "2016",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_PW_Q_PRODWATER_SOURCE,5.7.0/.A..........?startPeriod=2016&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_EDU_STUD",
+      "name": "Education - Qualified and Trained Teachers by Gender and Teaching Level of Education",
+      "mainTopic": "Social",
+      "subTopic": "Education",
+      "kpis": [
+        "Teachers"
+      ],
+      "agency": "FCSA",
+      "version": "1.3.0",
+      "key": "...A.....",
+      "defaultStartPeriod": "2022",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_EDU_STUD,1.3.0/...A.....?startPeriod=2022&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_EDU_TEACH",
+      "name": "Education - Students By Level of Education and Gender",
+      "mainTopic": "Social",
+      "subTopic": "Education",
+      "kpis": [
+        "Students"
+      ],
+      "agency": "FCSA",
+      "version": "1.3.0",
+      "key": "...A.....",
+      "defaultStartPeriod": "2022",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_EDU_TEACH,1.3.0/...A.....?startPeriod=2022&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_HE_STUDENTS_ARG",
+      "name": "Number of Students by Level of Education and Gender",
+      "mainTopic": "Social",
+      "subTopic": "Education",
+      "kpis": [
+        "Students"
+      ],
+      "agency": "FCSA",
+      "version": "2.3.0",
+      "key": ".A.......",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_HE_STUDENTS_ARG,2.3.0/.A.......?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_HEALTH_FACILITIES",
+      "name": "Health Facilities by Emirate, Type and Sector",
+      "mainTopic": "Social",
+      "subTopic": "Health",
+      "kpis": [
+        "Hospitals",
+        "Clinics and Centers",
+        "Hospital Beds"
+      ],
+      "agency": "FCSA",
+      "version": "3.1.0",
+      "key": "...A....",
+      "defaultStartPeriod": "2018",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_HEALTH_FACILITIES,3.1.0/...A....?startPeriod=2018&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_HEALTH_WORKFORCE",
+      "name": "Healthcare Professionals by Emirate and Sector",
+      "mainTopic": "Social",
+      "subTopic": "Health",
+      "kpis": [
+        "Healthcare Professionals"
+      ],
+      "agency": "FCSA",
+      "version": "3.1.0",
+      "key": "...A....",
+      "defaultStartPeriod": "2018",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_HEALTH_WORKFORCE,3.1.0/...A....?startPeriod=2018&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LFEP_ECON",
+      "name": "Employed Population (15 years and over) by Gender and Economic Activity Group",
+      "mainTopic": "Social",
+      "subTopic": "Labor Force",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "2.0.0",
+      "key": ".A...............",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LFEP_ECON,2.0.0/.A...............?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LFEP_OCC",
+      "name": "Employed Population (15 years and over) by Gender and Major Occupation Group",
+      "mainTopic": "Social",
+      "subTopic": "Labor Force",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "2.0.0",
+      "key": ".A...............",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LFEP_OCC,2.0.0/.A...............?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LFEP_SECT",
+      "name": "Employed Population (15 years and over) by Gender and Sector",
+      "mainTopic": "Social",
+      "subTopic": "Labor Force",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "2.0.0",
+      "key": ".A...............",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LFEP_SECT,2.0.0/.A...............?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LFEP_STAT",
+      "name": "Employed Population (15 years and over) by Gender and Employment Status",
+      "mainTopic": "Social",
+      "subTopic": "Labor Force",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "2.0.0",
+      "key": ".A...............",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LFEP_STAT,2.0.0/.A...............?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LFPR_AGE",
+      "name": "Labour Force Participation Rate (15 years and over) by Gender and Age",
+      "mainTopic": "Social",
+      "subTopic": "Labor Force",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "2.0.0",
+      "key": ".A...............",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LFPR_AGE,2.0.0/.A...............?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LFPR_ED",
+      "name": "Labour Force Participation Rate (15 years and over) by Gender and Educational Status",
+      "mainTopic": "Social",
+      "subTopic": "Labor Force",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "2.0.0",
+      "key": ".A...............",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LFPR_ED,2.0.0/.A...............?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LFUNEMP_AGE",
+      "name": "Unemployment Rate (15 years and over) by Gender and Age Group",
+      "mainTopic": "Social",
+      "subTopic": "Labor Force",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "2.0.0",
+      "key": ".A...............",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LFUNEMP_AGE,2.0.0/.A...............?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LFUNEMP_ED",
+      "name": "Unemployment Rate (15 years and over) by Gender and Educational Status",
+      "mainTopic": "Social",
+      "subTopic": "Labor Force",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "2.0.0",
+      "key": ".A...............",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LFUNEMP_ED,2.0.0/.A...............?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_LF_ED",
+      "name": "Employed Population (15 years and over) by Gender and Educational Status",
+      "mainTopic": "Social",
+      "subTopic": "Labor Force",
+      "kpis": [],
+      "agency": "FCSA",
+      "version": "2.0.0",
+      "key": ".A...............",
+      "defaultStartPeriod": "2020",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_LF_ED,2.0.0/.A...............?startPeriod=2020&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_POP",
+      "name": "Population Estimates and Growth by Gender",
+      "mainTopic": "Social",
+      "subTopic": "Population",
+      "kpis": [
+        "Population"
+      ],
+      "agency": "FCSA",
+      "version": "2.7.0",
+      "key": "....A..",
+      "defaultStartPeriod": "1970",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_POP,2.7.0/....A..?startPeriod=1970&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_DV_NA",
+      "name": "Registered Divorce Contracts by Nationality and Emirates",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Divorces"
+      ],
+      "agency": "FCSA",
+      "version": "1.5.0",
+      "key": ".A....",
+      "defaultStartPeriod": "2016",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_DV_NA,1.5.0/.A....?startPeriod=2016&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_MR_NA",
+      "name": "Registered Marriage Contracts by Nationality and Emirates",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Marriages"
+      ],
+      "agency": "FCSA",
+      "version": "1.5.0",
+      "key": ".A........",
+      "defaultStartPeriod": "2016",
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_MR_NA,1.5.0/.A........?startPeriod=2016&dimensionAtObservation=AllDimensions"
+    }
+  ]
+}
