@@ -1,0 +1,24 @@
+# Caddy obtains and renews a Let's Encrypt certificate automatically, which is
+# why it is preferred here over hand-rolled nginx + certbot.
+#
+# Replace mcp.example.com with the real hostname before deploying. The DNS A
+# record must already point at this host, and ports 80 and 443 must be open in
+# the security group, or the ACME challenge fails.
+
+mcp.example.com {
+	encode gzip
+
+	# Streamable HTTP holds an SSE stream open for server-to-client messages.
+	# Without flush_interval -1 the proxy buffers it and the connection stalls.
+	reverse_proxy 127.0.0.1:3000 {
+		flush_interval -1
+		transport http {
+			read_timeout 0
+		}
+	}
+
+	log {
+		output file /var/log/caddy/fcsc-mcp.log
+		format json
+	}
+}

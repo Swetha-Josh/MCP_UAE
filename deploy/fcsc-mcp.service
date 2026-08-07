@@ -1,0 +1,42 @@
+[Unit]
+Description=FCSC MCP Server (Streamable HTTP)
+Documentation=https://github.com/Swetha-Josh/MCP_UAE
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=fcsc-mcp
+Group=fcsc-mcp
+WorkingDirectory=/opt/fcsc-mcp-server/MCP_UAE
+EnvironmentFile=-/etc/fcsc-mcp.env
+ExecStart=/usr/bin/node http-server.js
+Restart=always
+RestartSec=5
+
+# Bound to loopback only — TLS termination and public exposure are the reverse
+# proxy's job, so the Node process must never be reachable directly.
+Environment=HOST=127.0.0.1
+Environment=PORT=3000
+Environment=NODE_ENV=production
+
+# The service reads its own code and talks HTTPS outbound. Nothing else.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=fcsc-mcp
+
+[Install]
+WantedBy=multi-user.target
