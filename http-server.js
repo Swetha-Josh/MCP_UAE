@@ -52,8 +52,8 @@ setInterval(() => {
   }
 }, Math.min(SESSION_IDLE_MS, 60_000)).unref();
 
-const badRequest = (res, message) =>
-  res.status(400).json({
+const badRequest = (res, message, status = 400) =>
+  res.status(status).json({
     jsonrpc: "2.0",
     error: { code: -32000, message },
     id: null,
@@ -64,7 +64,9 @@ app.post("/mcp", async (req, res) => {
 
   if (sessionId) {
     const existing = sessions.get(sessionId);
-    if (!existing) return badRequest(res, "Unknown or expired session id.");
+    // 404, not 400: the spec tells clients to re-initialize on 404, so sessions
+    // lost to a restart or the idle sweep recover instead of failing every call.
+    if (!existing) return badRequest(res, "Unknown or expired session id.", 404);
     touch(sessionId);
     return existing.handleRequest(req, res, req.body);
   }
