@@ -15,6 +15,11 @@ import { BASE_URL, createMcpServer, datasets } from "./create-server.js";
 const PORT = Number(process.env.PORT ?? 3000);
 const HOST = process.env.HOST ?? "0.0.0.0";
 
+// claude.ai opens a session per conversation and rarely sends DELETE, so
+// sessions that go quiet are closed here or they accumulate for the life of the
+// process.
+const SESSION_IDLE_MS = Number(process.env.SESSION_IDLE_MS ?? 30 * 60_000);
+
 const app = express();
 app.use(express.json({ limit: "4mb" }));
 
@@ -31,6 +36,21 @@ app.use((req, res, next) => {
 
 /** Live sessions, keyed by the session id the transport hands out on initialize. */
 const sessions = new Map();
+const lastSeen = new Map();
+
+const touch = (id) => {
+  if (sessions.has(id)) lastSeen.set(id, Date.now());
+};
+
+setInterval(() => {
+  const cutoff = Date.now() - SESSION_IDLE_MS;
+  for (const [id, seen] of lastSeen) {
+    if (seen < cutoff) {
+      lastSeen.delete(id);
+      sessions.get(id)?.close();
+    }
+  }
+}, Math.min(SESSION_IDLE_MS, 60_000)).unref();
 
 const badRequest = (res, message) =>
   res.status(400).json({
@@ -45,6 +65,7 @@ app.post("/mcp", async (req, res) => {
   if (sessionId) {
     const existing = sessions.get(sessionId);
     if (!existing) return badRequest(res, "Unknown or expired session id.");
+    touch(sessionId);
     return existing.handleRequest(req, res, req.body);
   }
 
@@ -56,11 +77,13 @@ app.post("/mcp", async (req, res) => {
     sessionIdGenerator: () => randomUUID(),
     onsessioninitialized: (id) => {
       sessions.set(id, transport);
+      touch(id);
       console.error(`session opened: ${id} (${sessions.size} active)`);
     },
   });
 
   transport.onclose = () => {
+    lastSeen.delete(transport.sessionId);
     if (transport.sessionId && sessions.delete(transport.sessionId)) {
       console.error(`session closed: ${transport.sessionId} (${sessions.size} active)`);
     }
@@ -74,6 +97,7 @@ app.post("/mcp", async (req, res) => {
 const bySession = async (req, res) => {
   const transport = sessions.get(req.headers["mcp-session-id"]);
   if (!transport) return res.status(404).send("Unknown or expired session id.");
+  touch(req.headers["mcp-session-id"]);
   await transport.handleRequest(req, res);
 };
 
@@ -82,6 +106,21 @@ app.delete("/mcp", bySession);
 
 app.get("/health", (_req, res) => {
   res.json({ status: "ok", datasets: datasets.length, sessions: sessions.size, upstream: BASE_URL });
+});
+
+// Internet scanners POST junk bodies (e.g. "0x[]=…") at any open port. Without
+// this, express.json's parse failure is logged as a full SyntaxError stack and
+// answered with an HTML page instead of a JSON-RPC error.
+app.use((err, req, res, next) => {
+  if (err.type === "entity.parse.failed") {
+    console.error(`rejected unparseable body from ${req.ip} on ${req.method} ${req.path}`);
+    return res.status(400).json({
+      jsonrpc: "2.0",
+      error: { code: -32700, message: "Parse error: request body is not valid JSON." },
+      id: null,
+    });
+  }
+  next(err);
 });
 
 app.listen(PORT, HOST, () => {

@@ -48,7 +48,10 @@ export class FcscError extends Error {
 }
 
 export async function fetchSdmx(url, { timeoutMs = 30_000, flavour = "data" } = {}) {
-  const headers = { Accept: ACCEPT[flavour] };
+  // Node's fetch sends "Accept-Language: *" by default, and the NSI service fails
+  // SDMX-JSON requests carrying "*" with a bare "languageTag1" error. curl sends
+  // no Accept-Language and gets the SDMX-ML default, so it never hits this.
+  const headers = { Accept: ACCEPT[flavour], "Accept-Language": "en" };
   if (process.env.FCSC_API_KEY) {
     headers["Ocp-Apim-Subscription-Key"] = process.env.FCSC_API_KEY;
   }
