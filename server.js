@@ -158,7 +158,7 @@ server.registerTool(
     let rows;
     let total;
     try {
-      ({ rows, total } = flattenObservations(result.payload, limit));
+      ({ rows, total } = flattenObservations(result.payload, limit, key ?? dataset.key));
     } catch (error) {
       if (error instanceof FcscError) return failure(`${error.message}\n\nRequested: ${url}`);
       throw error;

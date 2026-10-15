@@ -27,10 +27,20 @@ const ACCEPT = {
   structure: "application/vnd.sdmx.structure+json;version=1.0.0, application/json;q=0.9",
 };
 
+/**
+ * Cloudflare's WAF in front of FCSC rejects any path containing three or more
+ * consecutive dots (403 "Attention Required") as path traversal — and SDMX keys
+ * like ".A..............." are exactly that. Such keys are fetched as "all" and
+ * the selection is applied locally by flattenObservations instead.
+ */
+const isBlockedKey = (key) => /\.{3}/.test(key);
+
 /** Build the flat (AllDimensions) data URL for a dataset. */
 export function buildUrl(dataset, { key, startPeriod, endPeriod } = {}) {
+  const requested = key ?? dataset.key;
+  const pathKey = isBlockedKey(requested) ? "all" : requested;
   const url = new URL(
-    `${BASE_URL}/data/${dataset.agency},${dataset.id},${dataset.version}/${key ?? dataset.key}`
+    `${BASE_URL}/data/${dataset.agency},${dataset.id},${dataset.version}/${pathKey}`
   );
   const start = startPeriod ?? dataset.defaultStartPeriod;
   if (start) url.searchParams.set("startPeriod", start);
@@ -71,8 +81,9 @@ export async function fetchSdmx(url, { timeoutMs = 30_000, flavour = "data" } = 
     // failure looks nothing like an API error, so name it precisely.
     if (response.status === 403 && /cloudflare|attention required/i.test(body)) {
       throw new FcscError(
-        "Blocked by Cloudflare (HTTP 403), not by the API itself. This server's " +
-          "outbound IP needs to be allowlisted by FCSC before requests will get through.",
+        "Blocked by Cloudflare (HTTP 403), not by the API itself — either this " +
+          "server's outbound IP is not allowlisted or the URL tripped a WAF rule. " +
+          `Cloudflare Ray ID: ${response.headers.get("cf-ray") ?? "unknown"}.`,
         { status: 403, url }
       );
     }
@@ -98,7 +109,7 @@ export async function fetchSdmx(url, { timeoutMs = 30_000, flavour = "data" } = 
  * Handles both the 1.0 shape (top-level `structure`/`dataSets`) and the 2.0
  * shape (`data.structures[0]`/`data.dataSets`).
  */
-export function flattenObservations(payload, limit) {
+export function flattenObservations(payload, limit, key) {
   const root = payload.data ?? payload;
   const structure = payload.structure ?? root.structures?.[0] ?? root.structure;
   const dataSet = (root.dataSets ?? payload.dataSets ?? [])[0];
@@ -109,7 +120,25 @@ export function flattenObservations(payload, limit) {
 
   const dimensions = structure.dimensions?.observation ?? [];
   const obsAttributes = structure.attributes?.observation ?? [];
-  const entries = Object.entries(dataSet.observations);
+  let entries = Object.entries(dataSet.observations);
+
+  // A key buildUrl fetched as "all" still has to be honoured: keep only the
+  // observations whose code matches each non-empty key segment ("A", "A+Q").
+  if (key && isBlockedKey(key)) {
+    const seriesDims = dimensions.filter((dim) => dim.id !== "TIME_PERIOD");
+    const filters = key.split(".").flatMap((segment, position) => {
+      if (!segment) return [];
+      const dim = dimensions.find((d) => d.keyPosition === position) ?? seriesDims[position];
+      const index = dimensions.indexOf(dim);
+      return index === -1 ? [] : [{ index, codes: new Set(segment.split("+")) }];
+    });
+    entries = entries.filter(([obsKey]) => {
+      const indices = obsKey.split(":").map(Number);
+      return filters.every(({ index, codes }) =>
+        codes.has(dimensions[index].values[indices[index]]?.id)
+      );
+    });
+  }
 
   const rows = entries.slice(0, limit).map(([key, values]) => {
     const indices = key.split(":").map(Number);
