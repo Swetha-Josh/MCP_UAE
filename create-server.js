@@ -6,10 +6,10 @@ import {
   FcscError,
   buildUrl,
   datasets,
+  fetchDimensions,
   fetchSdmx,
   findDataset,
   flattenObservations,
-  summariseStructure,
   toTable,
 } from "./fcsc.js";
 
@@ -187,7 +187,7 @@ export function createMcpServer() {
     {
       title: "Get FCSC dataset structure",
       description:
-        "Returns the dimensions and codelists for one FCSC dataset. Use this when you " +
+        "Returns the dimensions (in key order) and the codes each one uses for one FCSC dataset. Use this when you " +
         "need to build a filtered `key` for getDatasetData, or to explain what " +
         "breakdowns a dataset offers.",
       inputSchema: {
@@ -200,26 +200,23 @@ export function createMcpServer() {
         return failure(`Unknown datasetId "${datasetId}". Call listDatasets to see available ids.`);
       }
 
-      const url =
-        `${BASE_URL}/dataflow/${dataset.agency}/${dataset.id}/${dataset.version}?references=all`;
-
       let result;
       try {
-        result = await fetchSdmx(url, { flavour: "structure" });
+        result = await fetchDimensions(dataset);
       } catch (error) {
-        if (error instanceof FcscError) return failure(`${error.message}\n\nRequested: ${url}`);
+        if (error instanceof FcscError) return failure(`${error.message}\n\nRequested: ${error.url}`);
         throw error;
       }
+      const { url, dimensions } = result;
 
       const header =
         `Structure for ${dataset.name} (${dataset.id} v${dataset.version})\n` +
         `Default key: ${dataset.key}\n${url}\n`;
 
-      const dimensions = result.kind === "json" ? summariseStructure(result.payload) : null;
       if (!dimensions) {
         return failure(
-          `${header}\nCould not read the structure message ` +
-            `(received ${result.kind}). The service may not support JSON structure queries.`
+          `${header}\nCould not read the dataset's dimensions ` +
+            `(received ${result.kind}). The service may not support JSON for this dataflow.`
         );
       }
 
@@ -231,8 +228,7 @@ export function createMcpServer() {
                 ? `\n    … ${dim.totalCodes - dim.codes.length} more`
                 : "")
             : "";
-          const codelist = dim.codelistId ? ` — ${dim.codelistId} (${dim.totalCodes} codes)` : "";
-          return `${dim.position ?? "?"}. ${dim.id} — ${dim.name}${codelist}${sample}`;
+          return `${dim.position + 1}. ${dim.id} — ${dim.name} (${dim.totalCodes} codes in use)${sample}`;
         })
         .join("\n");
 

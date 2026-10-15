@@ -159,40 +159,48 @@ export function flattenObservations(payload, limit, key) {
 }
 
 /**
- * Summarise an SDMX structure message as dimensions in key order, each with a
- * sample of its codelist. `references=all` pulls in every codelist, which can
- * run to hundreds of kilobytes — far too much to hand back verbatim.
+ * Read a dataset's dimensions from a one-observation data query.
+ *
+ * FCSC's /dataflow endpoint answers JSON requests with the dataflow alone (no
+ * DSD, no codelists, references=all ignored) and refuses structure+json 2.0, so
+ * a structure query can't describe the key. The SDMX-JSON data message carries
+ * every dimension with its key position and labelled codes, so ask for that.
+ * Codes listed are the ones the dataset actually uses.
  */
-export function summariseStructure(payload, { maxCodes = 12 } = {}) {
-  const root = payload.data ?? payload;
-  const dsd = (root.dataStructures ?? [])[0];
-  if (!dsd) return null;
+export async function fetchDimensions(dataset, { maxCodes = 12 } = {}) {
+  const base = buildUrl(dataset, { key: "all" });
+  let url = `${base}&lastNObservations=1`;
+  let result;
+  try {
+    result = await fetchSdmx(url);
+  } catch (error) {
+    // Retry without lastNObservations in case the service rejects it; a
+    // Cloudflare block or network failure would only fail again.
+    if (!(error instanceof FcscError) || !error.status || error.status === 403) throw error;
+    url = base;
+    result = await fetchSdmx(url);
+  }
 
-  const codelists = new Map(
-    (root.codelists ?? []).map((cl) => [`${cl.agencyID}:${cl.id}`, cl])
-  );
+  const root = result.kind === "json" ? result.payload.data ?? result.payload : null;
+  const structure = root && (result.payload.structure ?? root.structures?.[0] ?? root.structure);
+  const observed = structure?.dimensions?.observation;
+  if (!observed) return { url, kind: result.kind, dimensions: null };
 
-  const components = dsd.dataStructureComponents ?? {};
-  const dimensions = [
-    ...(components.dimensionList?.dimensions ?? []),
-    ...(components.dimensionList?.timeDimensions ?? []),
-  ].sort((a, b) => (a.position ?? 99) - (b.position ?? 99));
+  const dimensions = observed
+    .filter((dim) => dim.id !== "TIME_PERIOD")
+    .map((dim, index) => {
+      const values = dim.values ?? [];
+      return {
+        id: dim.id,
+        name: dim.name ?? dim.id,
+        position: dim.keyPosition ?? index,
+        totalCodes: values.length,
+        codes: values.slice(0, maxCodes).map((v) => `${v.id} (${v.name ?? ""})`),
+      };
+    })
+    .sort((a, b) => a.position - b.position);
 
-  return dimensions.map((dim) => {
-    // Enumerations arrive as URNs like "urn:…Codelist=FCSA:CL_FREQ(1.0)".
-    const urn = dim.localRepresentation?.enumeration ?? "";
-    const ref = urn.match(/Codelist=([^:]+):([^(]+)/);
-    const codelist = ref ? codelists.get(`${ref[1]}:${ref[2]}`) : null;
-    const codes = codelist?.codes ?? [];
-    return {
-      id: dim.id,
-      name: dim.name ?? dim.id,
-      position: dim.position ?? null,
-      codelistId: codelist?.id ?? null,
-      totalCodes: codes.length,
-      codes: codes.slice(0, maxCodes).map((c) => `${c.id} (${c.name ?? ""})`.trim()),
-    };
-  });
+  return { url, kind: result.kind, dimensions };
 }
 
 /** Render rows as a compact pipe table — cheaper to read than JSON. */
