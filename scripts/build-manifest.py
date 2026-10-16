@@ -25,6 +25,31 @@ NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 RNS = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
 
 FLAT_PARAM = "dimensionAtObservation=AllDimensions"
+
+# KPI rows the sheet lists without any link. Dataflows looked up in FCSC's
+# catalogue (/rest/dataflow/all/all/latest, Oct 2026). The key is "all"
+# because the sheet gives no default selection for them.
+MISSING_LINKS = {
+    "Birth": ("FCSA", "DF_BIRTHS", "1.9.0", "Births by Emirate, Nationality and Gender"),
+    "Death": ("FCSA", "DF_DEATHS", "2.9.0", "Deaths by Citizenship, Gender and Emirate"),
+}
+
+# Further vital-statistics dataflows not in the sheet, added on request. Same
+# catalogue lookup; filed under Social / Vital Statistics with key "all".
+EXTRA_DATASETS = [
+    ("FCSA", "DF_BIRTHS_ALL", "1.9.0", "Births Statistics", "Births"),
+    ("FCSA", "DF_BIR_AGE", "1.9.0", "Births by Mother's Age, Nationality and Gender", "Births"),
+    ("FCSA", "DF_BIR_CITI", "1.9.0", "Births by Parent's Nationality and Gender", "Births"),
+    ("FCSA", "DF_BIR_MONTH", "1.9.0", "Births by Nationality, Gender and Month of Birth", "Births"),
+    ("FCSA", "DF_DEATHS_ALL", "2.9.0", "Deaths All", "Deaths"),
+    ("FCSA", "DF_DEATHS_AGE", "2.9.0", "Deaths by Citizenship, Gender, Age Groups and Emirate", "Deaths"),
+    ("FCSA", "DF_DEATHS_CAUSE", "2.9.0", "Deaths by Citizenship, Gender, Cause of Death and Emirate", "Deaths"),
+    ("FCSA", "DF_DEATHS_INDIC", "2.9.0", "Mortality Indicators", "Mortality"),
+    ("FCSA", "DF_FERT", "1.3.0", "Fertility Rates", "Fertility"),
+    ("FCSA", "DF_INFMORT_COUNT", "1.9.0", "Infant, Neonatal, and Child Mortality by Gender and Citizenship", "Infant Mortality"),
+    ("FCSA", "DF_INFMORT_IND", "1.7.0", "Infant Mortality Indicators", "Infant Mortality"),
+    ("FCSA", "DF_INFMORT_IND_GEN", "1.9.0", "Child Mortality Indicators by Gender and Citizenship", "Infant Mortality"),
+]
 DATA_RE = re.compile(r"https://[^\s<>]*?/rest/data/([A-Za-z0-9_]+),([A-Z0-9_]+),([\d.]+)/([^?\s<>]*)(\?[^\s<>]*)?")
 
 
@@ -109,6 +134,11 @@ def main():
 
         # Scan the three URL columns rather than trusting column H.
         match = next((m for col in (6, 7, 8) for m in [DATA_RE.search(get(col))] if m), None)
+        if not match and kpi in MISSING_LINKS:
+            agency, flow, version, name = MISSING_LINKS[kpi]
+            match = DATA_RE.search(
+                f"https://releaseeuaestat.fcsc.gov.ae/rest/data/{agency},{flow},{version}/all"
+            )
         if not match:
             if kpi or name:
                 skipped.append((rownum, f"{sub_topic} / {kpi or name}"))
@@ -132,6 +162,20 @@ def main():
         })
         if kpi and kpi not in entry["kpis"]:
             entry["kpis"].append(kpi)
+
+    for agency, flow, version, name, kpi in EXTRA_DATASETS:
+        datasets.setdefault(flow, {
+            "id": flow,
+            "name": name,
+            "mainTopic": "Social",
+            "subTopic": "Vital Statistics",
+            "kpis": [kpi],
+            "agency": agency,
+            "version": version,
+            "key": "all",
+            "defaultStartPeriod": None,
+            "flatUrl": to_flat(f"https://releaseeuaestat.fcsc.gov.ae/rest/data/{agency},{flow},{version}/all"),
+        })
 
     out = {
         "source": src.split("/")[-1],

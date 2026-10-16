@@ -649,6 +649,146 @@
       "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_POP,2.7.0/....A..?startPeriod=1970&dimensionAtObservation=AllDimensions"
     },
     {
+      "id": "DF_BIRTHS",
+      "name": "Births by Emirate, Nationality and Gender",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Birth"
+      ],
+      "agency": "FCSA",
+      "version": "1.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_BIRTHS,1.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_BIRTHS_ALL",
+      "name": "Births Statistics",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Births"
+      ],
+      "agency": "FCSA",
+      "version": "1.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_BIRTHS_ALL,1.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_BIR_AGE",
+      "name": "Births by Mother's Age, Nationality and Gender",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Births"
+      ],
+      "agency": "FCSA",
+      "version": "1.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_BIR_AGE,1.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_BIR_CITI",
+      "name": "Births by Parent's Nationality and Gender",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Births"
+      ],
+      "agency": "FCSA",
+      "version": "1.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_BIR_CITI,1.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_BIR_MONTH",
+      "name": "Births by Nationality, Gender and Month of Birth",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Births"
+      ],
+      "agency": "FCSA",
+      "version": "1.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_BIR_MONTH,1.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_DEATHS",
+      "name": "Deaths by Citizenship, Gender and Emirate",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Death"
+      ],
+      "agency": "FCSA",
+      "version": "2.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_DEATHS,2.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_DEATHS_AGE",
+      "name": "Deaths by Citizenship, Gender, Age Groups and Emirate",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Deaths"
+      ],
+      "agency": "FCSA",
+      "version": "2.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_DEATHS_AGE,2.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_DEATHS_ALL",
+      "name": "Deaths All",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Deaths"
+      ],
+      "agency": "FCSA",
+      "version": "2.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_DEATHS_ALL,2.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_DEATHS_CAUSE",
+      "name": "Deaths by Citizenship, Gender, Cause of Death and Emirate",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Deaths"
+      ],
+      "agency": "FCSA",
+      "version": "2.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_DEATHS_CAUSE,2.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_DEATHS_INDIC",
+      "name": "Mortality Indicators",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Mortality"
+      ],
+      "agency": "FCSA",
+      "version": "2.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_DEATHS_INDIC,2.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
       "id": "DF_DV_NA",
       "name": "Registered Divorce Contracts by Nationality and Emirates",
       "mainTopic": "Social",
@@ -661,6 +801,62 @@
       "key": ".A....",
       "defaultStartPeriod": "2016",
       "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_DV_NA,1.5.0/.A....?startPeriod=2016&dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_FERT",
+      "name": "Fertility Rates",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Fertility"
+      ],
+      "agency": "FCSA",
+      "version": "1.3.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_FERT,1.3.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_INFMORT_COUNT",
+      "name": "Infant, Neonatal, and Child Mortality by Gender and Citizenship",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Infant Mortality"
+      ],
+      "agency": "FCSA",
+      "version": "1.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_INFMORT_COUNT,1.9.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_INFMORT_IND",
+      "name": "Infant Mortality Indicators",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Infant Mortality"
+      ],
+      "agency": "FCSA",
+      "version": "1.7.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_INFMORT_IND,1.7.0/all?dimensionAtObservation=AllDimensions"
+    },
+    {
+      "id": "DF_INFMORT_IND_GEN",
+      "name": "Child Mortality Indicators by Gender and Citizenship",
+      "mainTopic": "Social",
+      "subTopic": "Vital Statistics",
+      "kpis": [
+        "Infant Mortality"
+      ],
+      "agency": "FCSA",
+      "version": "1.9.0",
+      "key": "all",
+      "defaultStartPeriod": null,
+      "flatUrl": "https://releaseeuaestat.fcsc.gov.ae/rest/data/FCSA,DF_INFMORT_IND_GEN,1.9.0/all?dimensionAtObservation=AllDimensions"
     },
     {
       "id": "DF_MR_NA",
